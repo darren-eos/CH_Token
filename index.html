@@ -35,9 +35,9 @@
 
     <button onclick="connect()" id="btn-connect" style="display: block; margin: 50px auto;">Connect Wallet</button>
     <script>
-        const accounts = []; const account = "";
+        // const accounts = []; const account = "";
         function connect() {
-            accounts = ethereum.request({ method: 'eth_requestAccounts' })
+            ethereum.request({ method: 'eth_requestAccounts' })
             .then(handleAccountsChanged)
             .catch((error) => {
                 if (error.code === 4001) {
@@ -46,7 +46,7 @@
                 } else {
                     console.error(error);
                 }
-            }); account = accounts[0];
+            });
         }
         // const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
         // const account = accounts[0];
@@ -68,7 +68,7 @@
 
         function mintCHT() {
             contractCHT.methods.mint(3).send({
-                from: account,
+                from: ethereum.selectedAddress,
                 gas: 100000,
                 gasPrice: 88888888888
             }).then(function (result) { });
@@ -87,8 +87,8 @@
         );
 
         function claimCHC() {
-            contractCHT.methods.claim(account).send({
-                from: account,
+            contractCHT.methods.claim(ethereum.selectedAddress).send({
+                from: ethereum.selectedAddress,
                 gas: 100000,
                 gasPrice: 88888888888
             }).then(function (result) { });
