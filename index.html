@@ -68,7 +68,7 @@
 
         function mintCHT() {
             contractCHT.methods.mint(3).send({
-                from: "0x77f946376719ef066028a2064CdF78Df857D16b4",
+                from: account,
                 gas: 100000,
                 gasPrice: 88888888888
             }).then(function (result) { });
@@ -87,8 +87,8 @@
         );
 
         function claimCHC() {
-            contractCHT.methods.claim("0x77f946376719ef066028a2064CdF78Df857D16b4").send({
-                from: "0x77f946376719ef066028a2064CdF78Df857D16b4",
+            contractCHT.methods.claim(account).send({
+                from: account,
                 gas: 100000,
                 gasPrice: 88888888888
             }).then(function (result) { });
