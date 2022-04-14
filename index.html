@@ -35,8 +35,9 @@
 
     <button onclick="connect()" id="btn-connect" style="display: block; margin: 50px auto;">Connect Wallet</button>
     <script>
+        const accounts = []; const account = "";
         function connect() {
-            ethereum.request({ method: 'eth_requestAccounts' })
+            accounts = ethereum.request({ method: 'eth_requestAccounts' })
             .then(handleAccountsChanged)
             .catch((error) => {
                 if (error.code === 4001) {
@@ -45,8 +46,10 @@
                 } else {
                     console.error(error);
                 }
-            });
+            }); account = accounts[0];
         }
+        // const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        // const account = accounts[0];
     </script>
 
     <button onclick="mintCHT()" id="btn-mint" style="display: block; margin: 50px auto;">Mint</button>
